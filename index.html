@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>JS Canvas!</title>
-	<link rel="stylesheet" type="text/css" href="reset.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="canvas.js"></script>
 </head>
 <body>
+	<div id="mainContainer">
+		<div id="controls-container">
+			Grid Size
+			<div id="controls">
+				<input type="range" id="size" value="64" min="4" max="144">
+			</div>
+		</div>
+		<div id="canvas">
+			<!--dynamically generated with Javascript -->
+		</div>
+	</div>
 
 
 </body>

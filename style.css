@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #000812;
+	color: #FFF200;
+}
+
+#mainContainer {
+	width: 600px;
+	height: 650px;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -325px -300px;
+
+	background-color: #0E001C;
+}
+
+#controls-container {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	position: relative;
+	border: 1px solid yellow;
+	padding: 5px;
+	
+}
+
+#controls {
+	margin-top: 5px;
+}
+
+#canvas {
+	width: 600px;
+	height: 600px;
+	font-size: 0;
+}
+
+.square {
+	display: inline-block;
+
+	background-color: #38001B;
+}
+
+.selected {
+	background-color: #B9D100;
+}
