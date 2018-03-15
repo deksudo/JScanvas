@@ -25,12 +25,26 @@ body {
 	text-align: center;
 	position: relative;
 	border: 1px solid yellow;
-	padding: 5px;
 	
 }
 
-#controls {
-	margin-top: 5px;
+.controls {
+	display: inline-block;
+	position: relative;
+	width: 50%;
+	top: 50%;
+	vertical-align: top;
+	height: 40px;	
+	margin-top: -20px;
+
+}
+
+#size {
+	padding-top: 5px; 
+}
+
+#reset {
+	margin-top: 8px;
 }
 
 #canvas {
