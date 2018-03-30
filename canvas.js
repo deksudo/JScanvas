@@ -8,12 +8,12 @@ let squareCount;
 function main(event) {
 	container = document.getElementById("mainContainer");
 	canvas = document.getElementById("canvas");
-	squareCount = 8;
+	squareCount = 16;
 
 	document.getElementById("size").value = squareCount;
 	updateCanvas(squareCount);
 
-	canvas.addEventListener("mousedown", function(event) {mouseDown = true; event.preventDefault(); color(event);});
+	canvas.addEventListener("mousedown", function(event) {mouseDown = true; coloring = !(event.target.classList.contains("selected")); event.preventDefault(); color(event);});
 	canvas.addEventListener("mouseover", color);
 	document.addEventListener("mouseup", function() {mouseDown = false;});
 
@@ -21,15 +21,21 @@ function main(event) {
 	document.getElementById("reset").addEventListener("click", function() {updateCanvas(document.getElementById("size").value);});
 }
 
-//TODO change class according to the first clicked square's classlist instead of toggling
+
 let mouseDown = false;
+let coloring = true;
 function color(event) {
 	if (!mouseDown) return;
 	event.preventDefault();
-	event.target.classList.toggle("selected");
+	if (coloring) {
+		event.target.classList.add("selected");	
+	}
+	else {
+		event.target.classList.remove("selected");	
+	}
+	
 }
 
-//TODO set side length instead of total square size
 
 function sliderChange(event) {
 	updateCanvas(event.target.value);
@@ -38,7 +44,6 @@ function sliderChange(event) {
 
 function updateCanvas(sideLength) {
 	//canvas is assumed to be square in terms of width and height
-
 	let canvasWidth = parseFloat(window.getComputedStyle(canvas).getPropertyValue("width"));
 
 	let squareSide = canvasWidth / sideLength;
