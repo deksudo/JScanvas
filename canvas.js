@@ -8,7 +8,7 @@ let squareCount;
 function main(event) {
 	container = document.getElementById("mainContainer");
 	canvas = document.getElementById("canvas");
-	squareCount = 64;
+	squareCount = 8;
 
 	document.getElementById("size").value = squareCount;
 	updateCanvas(squareCount);
@@ -19,9 +19,9 @@ function main(event) {
 
 	document.getElementById("size").addEventListener("change", sliderChange);
 	document.getElementById("reset").addEventListener("click", function() {updateCanvas(squareCount);});
-	
 }
 
+//TODO change class according to the first clicked square's classlist instead of toggling
 let mouseDown = false;
 function color(event) {
 	if (!mouseDown) return;
@@ -29,37 +29,32 @@ function color(event) {
 	event.target.classList.toggle("selected");
 }
 
+//TODO set side length instead of total square size
 
-let validValues = [4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144];
 function sliderChange(event) {
-	let value = event.target.value;
-	let valueToStick = 0;
-	for (let i =0; i < validValues.length; i++) {
-		if (validValues[i] <= value) {
-			valueToStick = validValues[i];
-		}
-	}
-
-	event.target.value = valueToStick;
 	updateCanvas(event.target.value);
 	console.log(event.target.value);
 }
 
-function updateCanvas(squareCount) {
+function updateCanvas(sideLength) {
+	//canvas is assumed to be square in terms of width and height
+
 	let canvasWidth = parseFloat(window.getComputedStyle(canvas).getPropertyValue("width"));
-	let canvasHeight = parseFloat(window.getComputedStyle(canvas).getPropertyValue("height"));
-	let canvasArea = canvasWidth * canvasHeight;
-	let squareArea = canvasArea / squareCount;
-	let squareSideLength = Math.sqrt(squareArea);
-	console.log(squareSideLength); //75
+
+	let squareSide = canvasWidth / sideLength;
+	squareSide -= squareSide % 0.1; //round down
+
+	console.log(squareSide);
 
 	canvas.innerHTML = "";
 
-	for (let i =0; i < squareCount; i++) {
-		let square = document.createElement("div");
-		square.classList.add("square");
-		square.style.width = squareSideLength + "px";
-		square.style.height = squareSideLength + "px";
-		canvas.appendChild(square);
+	for (let i = 0; i < sideLength; i++) {
+		for (let j = 0; j < sideLength; j++) {
+			let square = document.createElement("div");
+			square.classList.add("square");
+			square.style.width = squareSide + "px";
+			square.style.height = squareSide + "px";
+			canvas.appendChild(square);
+		}
 	}
 }
