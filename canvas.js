@@ -18,7 +18,7 @@ function main(event) {
 	document.addEventListener("mouseup", function() {mouseDown = false;});
 
 	document.getElementById("size").addEventListener("change", sliderChange);
-	document.getElementById("reset").addEventListener("click", function() {updateCanvas(squareCount);});
+	document.getElementById("reset").addEventListener("click", function() {updateCanvas(document.getElementById("size").value);});
 }
 
 //TODO change class according to the first clicked square's classlist instead of toggling
